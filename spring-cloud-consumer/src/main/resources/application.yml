@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: dev
+
+server:
+  port: 8081
+
+---
+spring:
+  profiles: dev
+  application:
+    name: spring-cloud-consumer
+
+eureka:
+  client:
+    service-url: http://localhost:8761/eureka/
