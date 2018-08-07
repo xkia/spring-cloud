@@ -24,6 +24,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
     <spring-cloud.version>Finchley.RC2</spring-cloud.version>
+    <docker.image.prefix>ccr.ccs.tencentyun.com/xkia</docker.image.prefix>
   </properties>
 
   <dependencies>
@@ -52,14 +53,8 @@
   </dependencyManagement>
 
   <build>
-    <finalName>${artifactId}</finalName>
+    <finalName>${project.artifactId}</finalName>
     <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-
-      <!-- docker -->
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
@@ -78,8 +73,13 @@
           </execution>
         </executions>
         <configuration>
-          <!-- docker仓库地址，这里用的aws，后面文章会介绍 -->
-          <imageName>xkia/${project.build.finalName}</imageName>
+          <imageName>${docker.image.prefix}/${project.build.finalName}</imageName>
+          <imageTags>
+            <imageTag>${project.version}</imageTag>
+          </imageTags>
+          <serverId>docker-tencentyun</serverId>
+          <!-- 覆盖已有镜像 -->
+          <forceTags>true</forceTags>
           <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
           <resources>
             <resource>
