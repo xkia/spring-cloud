@@ -4,9 +4,9 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>xkia</groupId>
+  <groupId>org.xkia</groupId>
   <artifactId>spring-cloud</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.5-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>spring-cloud</name>
@@ -28,7 +28,15 @@
     <file.encoding>UTF-8</file.encoding>
     <java.version>1.8</java.version>
     <maven.build.timestamp.format>yyyyMMdd.HHmm</maven.build.timestamp.format>
+    <skipTests>true</skipTests>
+    <docker.image.prefix>ccr.ccs.tencentyun.com/xkia</docker.image.prefix>
   </properties>
+
+  <modules>
+    <module>spring-cloud-eureka-server</module>
+    <module>spring-cloud-producer</module>
+    <module>spring-cloud-service-ribbon</module>
+  </modules>
 
   <dependencyManagement>
     <dependencies>
@@ -47,12 +55,47 @@
 
   <build>
     <finalName>${project.artifactId}</finalName>
+    <pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
+      <!-- skip test -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.0</version>
+        <configuration>
+          <skipTests>${skipTests}</skipTests>
+        </configuration>
+      </plugin>
+      <!-- docker -->
+      <plugin>
+        <groupId>com.spotify</groupId>
+        <artifactId>dockerfile-maven-plugin</artifactId>
+        <version>1.4.3</version>
+        <executions>
+          <execution>
+            <id>default</id>
+            <goals>
+              <goal>build</goal>
+              <goal>push</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <username>100003217504</username>
+          <password>xukai80230011</password>
+          <repository>${docker.image.prefix}/${project.artifactId}</repository>
+          <tag>${project.version}</tag>
+          <buildArgs>
+            <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+          </buildArgs>
+        </configuration>
+      </plugin>
     </plugins>
+    </pluginManagement>
   </build>
 
   <repositories>
