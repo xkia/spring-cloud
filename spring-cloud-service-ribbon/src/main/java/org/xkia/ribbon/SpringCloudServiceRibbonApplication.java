@@ -17,6 +17,7 @@ public class SpringCloudServiceRibbonApplication {
   public static void main(String[] args) {
     SpringApplication.run(SpringCloudServiceRibbonApplication.class, args);
   }
+
   @Bean
   @LoadBalanced
   RestTemplate restTemplate() {

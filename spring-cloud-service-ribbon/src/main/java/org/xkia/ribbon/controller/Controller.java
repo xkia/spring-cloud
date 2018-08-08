@@ -16,7 +16,7 @@ public class Controller {
   Service service;
 
   @RequestMapping(value = "/hi")
-  public String hi(@RequestParam String name){
+  public String hi(@RequestParam String name) {
     return service.hiService(name);
   }
 
