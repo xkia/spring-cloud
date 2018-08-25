@@ -6,7 +6,7 @@
 
   <groupId>org.xkia</groupId>
   <artifactId>spring-cloud</artifactId>
-  <version>0.0.5-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>spring-cloud</name>
@@ -36,6 +36,8 @@
     <module>spring-cloud-eureka-server</module>
     <module>spring-cloud-producer</module>
     <module>spring-cloud-service-ribbon</module>
+    <module>spring-cloud-util</module>
+    <module>spring-cloud-grpc</module>
   </modules>
 
   <dependencyManagement>
@@ -75,20 +77,21 @@
           <groupId>com.spotify</groupId>
           <artifactId>dockerfile-maven-plugin</artifactId>
           <version>1.4.3</version>
-          <executions>
-            <execution>
-              <id>default</id>
-              <goals>
-                <goal>build</goal>
-                <goal>push</goal>
-              </goals>
-            </execution>
-          </executions>
+          <!--<executions>-->
+            <!--<execution>-->
+              <!--<id>default</id>-->
+              <!--<goals>-->
+                <!--<goal>build</goal>-->
+                <!--<goal>push</goal>-->
+              <!--</goals>-->
+            <!--</execution>-->
+          <!--</executions>-->
           <configuration>
             <username>100003217504</username>
             <password>xukai80230011</password>
             <repository>${docker.image.prefix}/${project.artifactId}</repository>
-            <tag>${project.version}</tag>
+            <!--<tag>${project.version}</tag>-->
+            <tag>latest</tag>
             <buildArgs>
               <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
             </buildArgs>

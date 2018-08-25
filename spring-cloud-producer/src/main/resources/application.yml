@@ -1,7 +1,9 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://192.168.50.49:8761/eureka/
+#      defaultZone: http://localhost:8761/eureka/
+#      defaultZone: http://spring-cloud-eureka-server:8761/eureka/
 server:
   port: 8762
 spring:
