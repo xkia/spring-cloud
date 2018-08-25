@@ -6,3 +6,4 @@ mvn -N versions:update-child-modules
 * docker 部署
 * 日志文件的添加，统一格式话日志文件
 * 是否可以统一dockerfile文件？
+* 增加工具包和grpc依赖
