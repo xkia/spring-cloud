@@ -1,8 +1,7 @@
 package org.xkia.grpc.service;
 
-import static org.junit.Assert.*;
-
 import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
 import java.util.logging.Logger;
 import org.junit.Test;
@@ -20,6 +19,7 @@ public class GreeterImplTest {
   public void sayHello() {
 
     String name = "";
+    channel = ManagedChannelBuilder.forAddress("127.0.0.1",8080).build();
     HelloRequest request = HelloRequest.newBuilder().setName(name).build();
     HelloReply response;
     try {
