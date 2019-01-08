@@ -1,10 +1,12 @@
 package org.xkia.grpc.service;
 
 import io.grpc.stub.StreamObserver;
+import org.xkia.grpc.annotation.GRpcService;
 import org.xkia.grpc.guide.GreeterGrpc;
 import org.xkia.grpc.guide.GreeterOuterClass.HelloReply;
 import org.xkia.grpc.guide.GreeterOuterClass.HelloRequest;
 
+@GRpcService
 public class GreeterImpl extends GreeterGrpc.GreeterImplBase
 {
 

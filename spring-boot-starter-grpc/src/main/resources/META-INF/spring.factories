@@ -1,0 +1,1 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=org.xkia.grpc.autoconfigure.GRpcAutoConfiguration,org.xkia.grpc.controller.GrpcServiceList

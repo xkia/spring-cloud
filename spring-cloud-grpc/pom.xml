@@ -11,31 +11,44 @@
   <packaging>jar</packaging>
 
   <artifactId>spring-cloud-grpc</artifactId>
+  <properties>
+    <grpc.version>1.16.1</grpc.version>
+  </properties>
+
 
   <dependencies>
     <dependency>
-      <groupId>io.grpc</groupId>
-      <artifactId>grpc-netty-shaded</artifactId>
-      <version>1.14.0</version>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <optional>true</optional>
     </dependency>
     <dependency>
-      <groupId>io.grpc</groupId>
-      <artifactId>grpc-protobuf</artifactId>
-      <version>1.14.0</version>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
+    <!--<dependency>-->
+      <!--<groupId>io.grpc</groupId>-->
+      <!--<artifactId>grpc-netty-shaded</artifactId>-->
+      <!--<version>${grpc.version}</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>io.grpc</groupId>-->
+      <!--<artifactId>grpc-protobuf</artifactId>-->
+      <!--<version>${grpc.version}</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>io.grpc</groupId>-->
+      <!--<artifactId>grpc-stub</artifactId>-->
+      <!--<version>${grpc.version}</version>-->
+    <!--</dependency>-->
     <dependency>
-      <groupId>io.grpc</groupId>
-      <artifactId>grpc-stub</artifactId>
-      <version>1.14.0</version>
+      <groupId>org.xkia.grpc</groupId>
+      <artifactId>spring-boot-starter-grpc</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
     </dependency>
-
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-boot-starter-grpc</artifactId>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -43,10 +56,21 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>RELEASE</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>2.9.7</version>
+    </dependency>
   </dependencies>
 
   <build>
-    <!-- grpc -->
     <extensions>
       <extension>
         <groupId>kr.motd.maven</groupId>
@@ -55,15 +79,16 @@
       </extension>
     </extensions>
     <plugins>
-      <!-- grpc protobuf plugins -->
       <plugin>
         <groupId>org.xolstice.maven.plugins</groupId>
         <artifactId>protobuf-maven-plugin</artifactId>
         <version>0.5.1</version>
         <configuration>
-          <protocArtifact>com.google.protobuf:protoc:3.5.1-1:exe:${os.detected.classifier}</protocArtifact>
+          <protocArtifact>com.google.protobuf:protoc:3.5.1-1:exe:${os.detected.classifier}
+          </protocArtifact>
           <pluginId>grpc-java</pluginId>
-          <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.14.0:exe:${os.detected.classifier}</pluginArtifact>
+          <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.16.1:exe:${os.detected.classifier}
+          </pluginArtifact>
         </configuration>
         <executions>
           <execution>

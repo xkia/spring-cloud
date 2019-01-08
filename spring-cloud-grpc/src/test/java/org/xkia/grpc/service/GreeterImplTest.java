@@ -19,7 +19,7 @@ public class GreeterImplTest {
   public void sayHello() {
 
     String name = "";
-    channel = ManagedChannelBuilder.forAddress("127.0.0.1",8080).build();
+    channel = ManagedChannelBuilder.forAddress("127.0.0.1",9090).build();
     HelloRequest request = HelloRequest.newBuilder().setName(name).build();
     HelloReply response;
     try {
